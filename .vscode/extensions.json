@@ -1,0 +1,26 @@
+{
+    "recommendations": [
+        // Vue / Frontend
+        "vue.volar",
+        "bradlc.vscode-tailwindcss",
+        "ant-design-vue.vscode-ant-design-vue-helper",
+        "vunguyentuan.vscode-css-variables",
+
+        // TypeScript / JavaScript
+        "ms-vscode.vscode-typescript-next",
+        "yoavbls.pretty-ts-errors",
+        "xabikos.javascriptsnippets",
+
+        // Code Quality
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "usernamehw.errorlens",
+
+        // Git
+        "eamodio.gitlens",
+        "vivaxy.vscode-conventional-commits",
+
+        // Utilities
+        "christian-kohler.path-intellisense"
+    ]
+}
