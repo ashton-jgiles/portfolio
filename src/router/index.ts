@@ -10,6 +10,16 @@ const router = createRouter({
       component: () => import("@/views/HomeView.vue"),
     },
     {
+      path: "/about",
+      name: "about",
+      component: () => import("@/views/AboutView.vue"),
+    },
+    {
+      path: "/portfolio",
+      name: "portfolio",
+      component: () => import("@/views/PortfolioView.vue"),
+    },
+    {
       path: "/blog",
       name: "blog",
       component: () => import("@/views/BlogView.vue"),
@@ -18,6 +28,11 @@ const router = createRouter({
       path: "/blog/:slug",
       name: "post",
       component: () => import("@/views/PostView.vue"),
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: () => import("@/views/ContactView.vue"),
     },
   ],
   scrollBehavior(to) {
