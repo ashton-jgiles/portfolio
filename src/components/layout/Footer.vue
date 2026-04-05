@@ -1,6 +1,6 @@
 <template>
-  <footer class="text-center text-sm text-gray-500 dark:text-gray-400">
-    <p>--------- {{ devQuote }} ---------</p>
+  <footer class="text-center text-sm text-gray-800">
+    <p>— {{ devQuote }} —</p>
   </footer>
 </template>
 

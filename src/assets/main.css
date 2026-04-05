@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Domine', serif;
+}
+
+body {
+  font-family: 'Domine', serif;
+}
