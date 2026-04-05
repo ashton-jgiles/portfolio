@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <section class="flex flex-col items-center py-8 gap-4 overflow-auto">
-    <div class="flex items-center justify-between w-full max-w-5xl px-4">
+    <div class="flex items-center justify-between w-full max-w-4xl px-4">
       <h1 class="text-4xl font-medium">Resume</h1>
       <a
         :href="resumeUrl"
@@ -12,7 +12,7 @@
         Download PDF
       </a>
     </div>
-    <div style="width: 100%; max-width: 1028px; height: 800px">
+    <div style="width: 100%; max-width: 900px; height: 800px">
       <VPdfViewer :src="resumeUrl" />
     </div>
   </section>
