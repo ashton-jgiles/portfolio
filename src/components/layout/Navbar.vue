@@ -53,7 +53,6 @@ import {
   GithubOutlined,
   InstagramOutlined,
   LinkedinOutlined,
-  MailFilled,
   MailOutlined,
 } from "@ant-design/icons-vue";
 

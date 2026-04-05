@@ -7,32 +7,32 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: () => import("@/views/HomeView.vue"),
+      component: () => import("@/pages/Home.vue"),
     },
     {
       path: "/about",
       name: "about",
-      component: () => import("@/views/AboutView.vue"),
+      component: () => import("@/pages/About.vue"),
     },
     {
       path: "/portfolio",
       name: "portfolio",
-      component: () => import("@/views/PortfolioView.vue"),
+      component: () => import("@/pages/Portfolio.vue"),
     },
     {
       path: "/blog",
       name: "blog",
-      component: () => import("@/views/BlogView.vue"),
+      component: () => import("@/pages/Blog.vue"),
     },
     {
       path: "/blog/:slug",
       name: "post",
-      component: () => import("@/views/PostView.vue"),
+      component: () => import("@/pages/Post.vue"),
     },
     {
-      path: "/contact",
-      name: "contact",
-      component: () => import("@/views/ContactView.vue"),
+      path: "/resume",
+      name: "resume",
+      component: () => import("@/pages/Resume.vue"),
     },
   ],
   scrollBehavior(to) {
