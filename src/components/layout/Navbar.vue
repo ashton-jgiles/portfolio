@@ -2,33 +2,37 @@
   <div class="relative">
     <nav class="px-6 py-4 flex items-center justify-center text-gray-800">
       <div class="flex gap-6 items-center">
-        <RouterLink to="/" class="font-medium py-2">Home</RouterLink>
-        <RouterLink to="/about" class="font-medium py-2">About</RouterLink>
-        <RouterLink to="/portfolio" class="font-medium py-2"
+        <RouterLink to="/" class="font-medium text-l py-2">Home</RouterLink>
+        <RouterLink to="/about" class="font-medium text-l py-2"
+          >About</RouterLink
+        >
+        <RouterLink to="/portfolio" class="font-medium text-l py-2"
           >Portfolio</RouterLink
         >
-        <RouterLink to="/blog" class="font-medium py-2">Blog</RouterLink>
-        <RouterLink to="/contact" class="font-medium py-2">Contact</RouterLink>
-        <button class="font-medium py-2" @click="handleJoinMailingList">
+        <RouterLink to="/blog" class="font-medium text-l py-2">Blog</RouterLink>
+        <RouterLink to="/resume" class="font-medium text-l py-2"
+          >Resume</RouterLink
+        >
+        <button class="font-medium text-l py-2" @click="handleJoinMailingList">
           Join the Mailing List
         </button>
         <a href="https://github.com/ashton-jgiles" target="_blank" class="py-2"
-          ><GithubOutlined :style="{ fontSize: '24px' }"
+          ><GithubOutlined :style="{ fontSize: '32px' }"
         /></a>
         <a
           href="https://www.linkedin.com/in/ashton-giles-5a74aa2b7/"
           target="_blank"
           class="py-2"
-          ><LinkedinOutlined :style="{ fontSize: '24px' }" />
+          ><LinkedinOutlined :style="{ fontSize: '32px' }" />
         </a>
         <a
           href="https://instagram.com/ashtonjgiles"
           target="_blank"
           class="py-2"
-          ><InstagramOutlined :style="{ fontSize: '24px' }"
+          ><InstagramOutlined :style="{ fontSize: '32px' }"
         /></a>
         <a href="mailto:ashtonjgiles@gmail.com" target="_blank" class="py-2"
-          ><MailOutlined :style="{ fontSize: '24px' }"
+          ><MailOutlined :style="{ fontSize: '32px' }"
         /></a>
       </div>
     </nav>
