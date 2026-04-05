@@ -1,6 +1,9 @@
 <template>
   <div class="relative">
     <nav class="px-6 py-4 flex items-center justify-center text-gray-800">
+      <div class="px-4">
+        <img src="@/assets/logo.png" class="h-20 w-auto" />
+      </div>
       <div class="flex gap-6 items-center">
         <RouterLink to="/" class="font-medium text-l py-2">Home</RouterLink>
         <RouterLink to="/about" class="font-medium text-l py-2"
