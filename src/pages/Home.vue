@@ -103,13 +103,16 @@
         <span v-else class="text-gray-400 italic">Link coming soon</span>
       </div>
     </Modal>
+
+    <Footer />
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import Navbar from "@/components/layout/Navbar.vue";
+import Footer from "@/components/layout/Footer.vue";
 import { Card, Modal } from "ant-design-vue";
 
 const router = useRouter();
@@ -164,17 +167,19 @@ function openProject(project: Project) {
   modalVisible.value = true;
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick();
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove("is-visible");
         }
       });
     },
-    { threshold: 0.15 },
+    { threshold: 0 },
   );
 
   document
@@ -184,22 +189,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* ── Hero colours — change these to retheme ── */
-.left-panel {
-  background: #0d1b2a;
-}
-.right-panel {
-  background: #ef946c;
-}
-
 /* ── Hero layout ── */
+/* To retheme: change background on .left-panel and .right-panel */
 .hero {
   display: flex;
-  height: calc(100vh - 72px); /* 72px ≈ navbar height */
+  height: calc(100vh - 72px);
+  overflow: hidden;
 }
 
 .left-panel {
+  background: #0d1b2a;
   width: 60%;
+  flex-shrink: 0;
+  clip-path: polygon(0 0, 100% 0, 87% 100%, 0 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -207,7 +209,7 @@ onMounted(() => {
   gap: 1.5rem;
   color: white;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
 }
 
 .subtitle {
@@ -264,12 +266,13 @@ onMounted(() => {
 
 /* ── Right panel / photo ── */
 .right-panel {
-  width: 45%;
+  background: #ef946c;
+  flex: 1;
+  margin-left: -8%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .photo-wrapper {
