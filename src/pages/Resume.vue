@@ -1,24 +1,24 @@
 <template>
-  <main>
+  <main class="h-screen overflow-hidden">
     <Navbar />
 
     <!-- Hero -->
     <section class="hero">
       <div class="left-panel">
         <span class="subtitle">Career Overview</span>
-        <h1 class="title">Resume.</h1>
+        <h1 class="title">Resume</h1>
         <p class="bio">
           A snapshot of my experience, skills, and the problems I've enjoyed
           solving. Download the PDF or preview it below.
         </p>
-        <a :href="resumeUrl" download="Ashton Giles Resume.pdf" class="download-btn">
+        <a
+          :href="resumeUrl"
+          download="Ashton Giles Resume.pdf"
+          class="download-btn"
+        >
           <DownloadOutlined />
           Download PDF
         </a>
-        <div class="scroll-hint">
-          <span class="scroll-line" />
-          <span>Scroll to preview</span>
-        </div>
       </div>
 
       <div class="right-panel">
@@ -40,20 +40,14 @@
         </div>
       </div>
     </section>
-
-    <!-- PDF Viewer -->
-    <section class="viewer-section animate-section">
-      <VPdfViewer :src="resumeUrl" style="width: 100%; height: 900px" />
-    </section>
   </main>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
 import Navbar from "@/components/layout/Navbar.vue";
-import { VPdfViewer } from "@vue-pdf-viewer/viewer";
 import { DownloadOutlined } from "@ant-design/icons-vue";
-import resumePdf from "@/assets/Ashton Giles_Resume 2024.pdf";
+import resumePdf from "@/assets/Resume 2026 Ashton Giles.pdf";
 
 const resumeUrl = resumePdf;
 
@@ -67,26 +61,29 @@ onMounted(() => {
         }
       });
     },
-    { threshold: 0.05 }
+    { threshold: 0.05 },
   );
 
-  document.querySelectorAll(".animate-section").forEach((el) => observer.observe(el));
+  document
+    .querySelectorAll(".animate-section")
+    .forEach((el) => observer.observe(el));
 });
 </script>
 
 <style scoped>
-/* ── Hero colours — change these to retheme ── */
-.left-panel  { background: #0d1b2a; }
-.right-panel { background: #ef946c; }
-
 /* ── Hero layout ── */
+/* To retheme: change background on .left-panel and .right-panel */
 .hero {
   display: flex;
   height: calc(100vh - 72px);
+  overflow: hidden;
 }
 
 .left-panel {
-  width: 55%;
+  background: #0d1b2a;
+  width: 60%;
+  flex-shrink: 0;
+  clip-path: polygon(0 0, 100% 0, 87% 100%, 0 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,10 +91,11 @@ onMounted(() => {
   gap: 1.5rem;
   color: white;
   position: relative;
+  z-index: 1;
 }
 
 .subtitle {
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #ef946c;
@@ -110,6 +108,7 @@ onMounted(() => {
 }
 
 .bio {
+  font-size: 1.25rem;
   color: #9ca3af;
   max-width: 26rem;
   line-height: 1.7;
@@ -123,7 +122,7 @@ onMounted(() => {
   background: #ef946c;
   color: #0d1b2a;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 1.25rem;
   text-decoration: none;
   width: fit-content;
   transition: opacity 0.2s ease;
@@ -133,28 +132,11 @@ onMounted(() => {
   opacity: 0.85;
 }
 
-.scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: #6b7280;
-  letter-spacing: 0.1em;
-}
-
-.scroll-line {
-  display: block;
-  width: 2rem;
-  height: 1px;
-  background: #6b7280;
-}
-
 /* ── Right panel / stats ── */
 .right-panel {
-  width: 45%;
+  background: #ef946c;
+  flex: 1;
+  margin-left: -8%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,23 +174,5 @@ onMounted(() => {
   width: 2rem;
   height: 1px;
   background: rgba(13, 27, 42, 0.25);
-}
-
-/* ── PDF viewer ── */
-.viewer-section {
-  background: #111;
-  padding: 4rem 5rem;
-}
-
-/* ── Scroll animation ── */
-.animate-section {
-  opacity: 0;
-  transform: translateY(2rem);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.animate-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 </style>
