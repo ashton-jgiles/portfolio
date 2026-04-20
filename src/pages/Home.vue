@@ -36,24 +36,84 @@
           <div>
             <h1 class="text-5xl font-medium py-2">What Im Working On</h1>
             <div class="flex gap-6">
-              <Card title="Meridian" class="w-64">
-                <p>Description of Meridian project goes here.</p>
-              </Card>
-              <Card title="NHL Predictive Analysis Model" class="w-64">
-                <p>Description of the NHL predictive model goes here.</p>
-              </Card>
-              <Card title="Untitled 2D Metroidvania Game" class="w-64">
-                <p>Description of the Metroidvania game goes here.</p>
+              <Card
+                v-for="project in projects"
+                :key="project.title"
+                class="flex-1 min-w-0 cursor-pointer"
+                :hoverable="true"
+                @click="openProject(project)"
+              >
+                <template #title><span class="whitespace-normal">{{ project.title }}</span></template>
+                <p>{{ project.summary }}</p>
               </Card>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <Modal
+      v-if="selectedProject"
+      :open="modalVisible"
+      :title="selectedProject.title"
+      :footer="null"
+      @cancel="modalVisible = false"
+    >
+      <div class="flex flex-col gap-4 pt-2">
+        <p class="text-gray-600">{{ selectedProject.description }}</p>
+        <a v-if="selectedProject.link" :href="selectedProject.link" target="_blank" class="text-blue-500 hover:underline">
+          View Project
+        </a>
+        <span v-else class="text-gray-400 italic">Link coming soon</span>
+      </div>
+    </Modal>
   </main>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import Navbar from "@/components/layout/Navbar.vue";
-import { Card } from "ant-design-vue";
+import { Card, Modal } from "ant-design-vue";
+
+interface Project {
+  title: string;
+  summary: string;
+  description: string;
+  link?: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "Meridian",
+    summary: "Description of Meridian project goes here.",
+    description: "Description of Meridian project goes here.",
+    link: undefined,
+  },
+  {
+    title: "Recipe Organizer and Formatter",
+    summary: "Description of the recipe organizer goes here.",
+    description: "Description of the recipe organizer goes here.",
+    link: undefined,
+  },
+  {
+    title: "NHL Predictive Analysis Model",
+    summary: "Description of the NHL predictive model goes here.",
+    description: "Description of the NHL predictive model goes here.",
+    link: undefined,
+  },
+  {
+    title: "Untitled 2D Metroidvania Game",
+    summary: "Description of the Metroidvania game goes here.",
+    description: "Description of the Metroidvania game goes here.",
+    link: undefined,
+  },
+];
+
+const modalVisible = ref(false);
+const selectedProject = ref<Project | null>(null);
+
+function openProject(project: Project) {
+  selectedProject.value = project;
+  modalVisible.value = true;
+}
 </script>
