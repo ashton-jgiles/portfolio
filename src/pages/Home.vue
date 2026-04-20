@@ -1,67 +1,87 @@
 <template>
-  <main class="flex flex-col h-full">
+  <main>
     <Navbar />
-    <div class="flex-1 overflow-y-auto">
-      <div class="flex flex-col px-16 py-8 gap-8">
-        <div class="flex items-center gap-6 w-fit">
-          <img
-            src="@/assets/profilePhoto.jpg"
-            class="h-60 w-60 rounded-full object-cover"
-          />
-          <div class="flex flex-col gap-2 max-w-sm">
-            <h1 class="text-5xl font-medium">Ashton Giles</h1>
-            <p class="text-black">
-              Web Developer specializing in Vue and React as frontend frameworks
-              and typescript using NestJS as my backend. I have a passion for
-              designing games and creating software that solves real problems in
-              the industry.
-            </p>
-          </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="left-panel">
+        <span class="subtitle">Software Developer</span>
+        <h1 class="name">Ashton<br />Giles</h1>
+        <p class="bio">
+          I build full-stack web applications and small scale machine learning
+          models to do statistical analysis on topics I'm interested in.
+        </p>
+        <div class="taglines">
+          <p>
+            Vue & React specialist focused on clean, scalable frontend code and
+            systems.
+          </p>
+          <p>
+            TypeScript with NestJS, and Django for robust and secure backend
+            systems and APIs.
+          </p>
         </div>
-        <div class="w-full max-w-4xl flex flex-col gap-8">
-          <div class="flex flex-col items-end">
-            <h1 class="text-5xl font-medium py-2">Featured Posts</h1>
-            <div class="flex gap-6">
-              <Card
-                v-for="post in posts"
-                :key="post.title"
-                class="post-card w-64 cursor-pointer"
-                :hoverable="true"
-                @click="
-                  router.push({ name: 'post', params: { slug: post.slug } })
-                "
-              >
-                <template #title
-                  ><span class="whitespace-normal">{{
-                    post.title
-                  }}</span></template
-                >
-                <p>{{ post.summary }}</p>
-              </Card>
-            </div>
-          </div>
-          <div>
-            <h1 class="text-5xl font-medium py-2">What Im Working On</h1>
-            <div class="flex gap-6">
-              <Card
-                v-for="project in projects"
-                :key="project.title"
-                class="flex-1 min-w-0 cursor-pointer bg-[#868194]"
-                :hoverable="true"
-                @click="openProject(project)"
-              >
-                <template #title
-                  ><span class="whitespace-normal">{{
-                    project.title
-                  }}</span></template
-                >
-                <p>{{ project.summary }}</p>
-              </Card>
-            </div>
-          </div>
+        <div class="scroll-hint">
+          <span class="scroll-line" />
+          <span>Scroll</span>
         </div>
       </div>
-    </div>
+
+      <div class="right-panel">
+        <div class="photo-wrapper">
+          <div class="photo-accent" />
+          <img src="@/assets/profilePhoto.jpg" class="photo" />
+        </div>
+      </div>
+    </section>
+
+    <!-- What Im Working On -->
+    <section class="content-section">
+      <h2 class="section-title">What Im Working On</h2>
+      <div class="cards-row">
+        <div
+          v-for="(project, i) in projects"
+          :key="project.title"
+          class="card-animate"
+          :style="{ transitionDelay: `${i * 0.12}s` }"
+        >
+          <Card
+            class="project-card cursor-pointer"
+            :hoverable="true"
+            @click="openProject(project)"
+          >
+            <template #title>
+              <span class="whitespace-normal">{{ project.title }}</span>
+            </template>
+            <p>{{ project.summary }}</p>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section class="content-section">
+      <h2 class="section-title">Featured Posts</h2>
+      <div class="cards-row">
+        <div
+          v-for="(post, i) in posts"
+          :key="post.title"
+          class="card-animate"
+          :style="{ transitionDelay: `${i * 0.12}s` }"
+        >
+          <Card
+            class="post-card cursor-pointer"
+            :hoverable="true"
+            @click="router.push({ name: 'post', params: { slug: post.slug } })"
+          >
+            <template #title>
+              <span class="whitespace-normal">{{ post.title }}</span>
+            </template>
+            <p>{{ post.summary }}</p>
+          </Card>
+        </div>
+      </div>
+    </section>
 
     <Modal
       v-if="selectedProject"
@@ -87,7 +107,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import Navbar from "@/components/layout/Navbar.vue";
 import { Card, Modal } from "ant-design-vue";
@@ -118,25 +138,21 @@ const projects: Project[] = [
     title: "Meridian",
     summary: "Description of Meridian project goes here.",
     description: "Description of Meridian project goes here.",
-    link: undefined,
   },
   {
     title: "Recipe Organizer and Formatter",
     summary: "Description of the recipe organizer goes here.",
     description: "Description of the recipe organizer goes here.",
-    link: undefined,
   },
   {
     title: "NHL Predictive Analysis Model",
     summary: "Description of the NHL predictive model goes here.",
     description: "Description of the NHL predictive model goes here.",
-    link: undefined,
   },
   {
     title: "Untitled 2D Metroidvania Game",
     summary: "Description of the Metroidvania game goes here.",
     description: "Description of the Metroidvania game goes here.",
-    link: undefined,
   },
 ];
 
@@ -147,4 +163,183 @@ function openProject(project: Project) {
   selectedProject.value = project;
   modalVisible.value = true;
 }
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
+
+  document
+    .querySelectorAll(".card-animate")
+    .forEach((el) => observer.observe(el));
+});
 </script>
+
+<style scoped>
+/* ── Hero colours — change these to retheme ── */
+.left-panel {
+  background: #0d1b2a;
+}
+.right-panel {
+  background: #ef946c;
+}
+
+/* ── Hero layout ── */
+.hero {
+  display: flex;
+  height: calc(100vh - 72px); /* 72px ≈ navbar height */
+}
+
+.left-panel {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5rem;
+  gap: 1.5rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.subtitle {
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ef946c;
+}
+
+.name {
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.bio {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  max-width: 26rem;
+  line-height: 1.7;
+}
+
+.taglines {
+  display: flex;
+  gap: 3rem;
+  margin-top: 0.5rem;
+}
+
+.taglines p {
+  font-size: 1rem;
+  color: #6b7280;
+  max-width: 160px;
+  line-height: 1.6;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  letter-spacing: 0.1em;
+}
+
+.scroll-line {
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: #6b7280;
+}
+
+/* ── Right panel / photo ── */
+.right-panel {
+  width: 45%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.photo-wrapper {
+  position: relative;
+}
+
+.photo-accent {
+  position: absolute;
+  inset: 1.5rem -1.5rem -1.5rem 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+
+.photo {
+  position: relative;
+  z-index: 1;
+  height: 640px;
+  width: 520px;
+  object-fit: cover;
+}
+
+/* ── Content sections ── */
+.content-section {
+  padding: 5rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.cards-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* ── Project card colour ── */
+.project-card :deep(.ant-card),
+.project-card :deep(.ant-card-head),
+.project-card :deep(.ant-card-body) {
+  background-color: #868194;
+  border: none !important;
+}
+
+/* ── Post card colour ── */
+.post-card :deep(.ant-card),
+.post-card :deep(.ant-card-head),
+.post-card :deep(.ant-card-body) {
+  background-color: #ef946c;
+  border: none !important;
+}
+
+/* ── Scroll animation ── */
+.card-animate {
+  flex: 1;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+/* posts row cards have fixed width */
+.content-section:last-of-type .card-animate {
+  flex: 0 0 16rem;
+}
+
+.card-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

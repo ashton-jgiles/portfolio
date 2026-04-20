@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen overflow-hidden text-black flex flex-col bg-white">
-    <RouterView class="flex-1" />
+  <div class="min-h-screen flex flex-col text-black bg-white">
+    <RouterView />
     <Footer />
   </div>
 </template>
