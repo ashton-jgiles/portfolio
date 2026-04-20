@@ -195,6 +195,9 @@ onMounted(async () => {
   display: flex;
   height: calc(100vh - 72px);
   overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 0;
 }
 
 .left-panel {
@@ -297,6 +300,13 @@ onMounted(async () => {
 /* ── Content sections ── */
 .content-section {
   padding: 5rem;
+  position: relative;
+  z-index: 1;
+  background: white;
+}
+
+.content-section:last-of-type {
+  padding-bottom: 14rem;
 }
 
 .section-title {
