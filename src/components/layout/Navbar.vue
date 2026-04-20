@@ -1,46 +1,30 @@
 <template>
-  <div class="relative">
-    <nav class="px-6 py-4 flex items-center justify-end text-gray-800">
-      <div class="flex gap-10 items-center">
-        <RouterLink to="/" class="font-medium text-l py-2">Home</RouterLink>
-        <RouterLink to="/about" class="font-medium text-l py-2"
-          >About</RouterLink
-        >
-        <RouterLink to="/portfolio" class="font-medium text-l py-2"
-          >Portfolio</RouterLink
-        >
-        <RouterLink to="/blog" class="font-medium text-l py-2">Blog</RouterLink>
-        <RouterLink to="/resume" class="font-medium text-l py-2"
-          >Resume</RouterLink
-        >
-        <button class="font-medium text-l py-2" @click="handleJoinMailingList">
-          Join the Mailing List
-        </button>
-        <a href="https://github.com/ashton-jgiles" target="_blank" class="py-2"
-          ><GithubOutlined :style="{ fontSize: '32px' }"
-        /></a>
-        <a
-          href="https://www.linkedin.com/in/ashton-giles-5a74aa2b7/"
-          target="_blank"
-          class="py-2"
-          ><LinkedinOutlined :style="{ fontSize: '32px' }" />
-        </a>
-        <a
-          href="https://instagram.com/ashtonjgiles"
-          target="_blank"
-          class="py-2"
-          ><InstagramOutlined :style="{ fontSize: '32px' }"
-        /></a>
-        <a href="mailto:ashtonjgiles@gmail.com" target="_blank" class="py-2"
-          ><MailOutlined :style="{ fontSize: '32px' }"
-        /></a>
-      </div>
-    </nav>
-  </div>
+  <nav class="sticky top-0 z-50 px-6 py-4 flex items-center justify-end text-gray-800 bg-white">
+    <div class="flex gap-10 items-center">
+      <RouterLink to="/" class="font-medium text-xl py-2">Home</RouterLink>
+      <RouterLink to="/about" class="font-medium text-xl py-2">About</RouterLink>
+      <RouterLink to="/portfolio" class="font-medium text-xl py-2">Portfolio</RouterLink>
+      <RouterLink to="/blog" class="font-medium text-xl py-2">Blog</RouterLink>
+      <RouterLink to="/resume" class="font-medium text-xl py-2">Resume</RouterLink>
+      <span class="font-medium text-xl py-2 cursor-pointer" @click="handleJoinMailingList">
+        Join the Mailing List
+      </span>
+      <a href="https://github.com/ashton-jgiles" target="_blank" class="py-2">
+        <GithubOutlined :style="{ fontSize: '32px' }" />
+      </a>
+      <a href="https://www.linkedin.com/in/ashton-giles-5a74aa2b7/" target="_blank" class="py-2">
+        <LinkedinOutlined :style="{ fontSize: '32px' }" />
+      </a>
+      <a href="https://instagram.com/ashtonjgiles" target="_blank" class="py-2">
+        <InstagramOutlined :style="{ fontSize: '32px' }" />
+      </a>
+      <a href="mailto:ashtonjgiles@gmail.com" target="_blank" class="py-2">
+        <MailOutlined :style="{ fontSize: '32px' }" />
+      </a>
+    </div>
+  </nav>
 
-  <div>
-    <MailingListModal v-model:open="modalOpen" />
-  </div>
+  <MailingListModal v-model:open="modalOpen" />
 </template>
 
 <script setup lang="ts">
