@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen overflow-hidden text-gray-900 flex flex-col bg-white">
+  <div class="h-screen overflow-hidden text-black flex flex-col bg-white">
     <RouterView class="flex-1" />
     <Footer />
   </div>
