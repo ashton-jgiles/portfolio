@@ -5,7 +5,7 @@
     <section class="hero">
       <div class="left-panel">
         <span class="subtitle">Developer / Designer / Builder</span>
-        <h1 class="title">About<br />Me.</h1>
+        <h1 class="title">About<br />Me</h1>
         <p class="bio">
           I'm Ashton — a full-stack web developer, game designer, and data
           science / machine learning enthusiast. I think a cornerstone of

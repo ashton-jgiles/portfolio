@@ -29,13 +29,13 @@
           </div>
           <div class="stat-divider" />
           <div class="stat">
-            <span class="stat-number">10+</span>
-            <span class="stat-label">Projects Shipped</span>
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Personal Projects Created</span>
           </div>
           <div class="stat-divider" />
           <div class="stat">
-            <span class="stat-number">5</span>
-            <span class="stat-label">Tech Specializations</span>
+            <span class="stat-number">7+</span>
+            <span class="stat-label">Programming Languages and Frameworks</span>
           </div>
         </div>
       </div>
