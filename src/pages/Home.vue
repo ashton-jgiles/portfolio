@@ -54,6 +54,7 @@
               <span class="whitespace-normal">{{ project.title }}</span>
             </template>
             <p>{{ project.summary }}</p>
+            <span class="click-hint">Click to learn more</span>
           </Card>
         </div>
       </div>
@@ -96,11 +97,11 @@
           v-if="selectedProject.link"
           :href="selectedProject.link"
           target="_blank"
-          class="text-blue-500 hover:underline"
+          class="modal-learn-btn"
         >
-          View Project
+          Learn More
         </a>
-        <span v-else class="text-gray-400 italic">Link coming soon</span>
+        <span v-else class="modal-learn-btn disabled">Link Coming Soon</span>
       </div>
     </Modal>
 
@@ -139,23 +140,31 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Meridian",
-    summary: "Description of Meridian project goes here.",
-    description: "Description of Meridian project goes here.",
+    summary:
+      "A day planner and workflow builder to better manage your schedule and establish good habits.",
+    description:
+      "Meridian is a personal day planner and worflow builder tool that is meant to integrate key aspects of a busy life. Meridian is designed to unify planning, time management, scheduling, and organization into one seamless web application.",
   },
   {
     title: "Recipe Organizer and Formatter",
-    summary: "Description of the recipe organizer goes here.",
-    description: "Description of the recipe organizer goes here.",
+    summary:
+      "A simple application random recipes and organize them by type and put them into your own custom format",
+    description:
+      "A simple desktop application that allows users to take existing recipes they have and input them into the system in a variety of ways. Users can format their recipes however they want and sync them to their devices or print them. The choice is theis.",
   },
   {
     title: "NHL Predictive Analysis Model",
-    summary: "Description of the NHL predictive model goes here.",
-    description: "Description of the NHL predictive model goes here.",
+    summary:
+      "A machine learning model of National Hockey League data to better understand the game of hockey the statistics that really matter",
+    description:
+      "A machine learning model built in python and jupyter notebooks designed to take data from the National Hockey League and create a model to predict and understand the game of hockey and make it easy for the layman to understand.",
   },
   {
     title: "Untitled 2D Metroidvania Game",
-    summary: "Description of the Metroidvania game goes here.",
-    description: "Description of the Metroidvania game goes here.",
+    summary:
+      "In the early stages of development. This game is inspired by Hollow Knight and the Ori Games",
+    description:
+      "In the early stages of development. This game is inspired by Hollow Knight and the Ori Games.",
   },
 ];
 
@@ -328,6 +337,54 @@ onMounted(async () => {
   border: none !important;
 }
 
+.project-card,
+.project-card :deep(.ant-card) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card :deep(.ant-card-body) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card :deep(.ant-card-body) p {
+  flex: 1;
+}
+
+.click-hint {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.modal-learn-btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: #0d1b2a;
+  color: white;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  width: fit-content;
+  transition: opacity 0.2s ease;
+  font-family: inherit;
+}
+
+.modal-learn-btn:hover {
+  opacity: 0.8;
+}
+
+.modal-learn-btn.disabled {
+  background: #d1d5db;
+  color: #6b7280;
+  cursor: default;
+}
+
 /* ── Post card colour ── */
 .post-card :deep(.ant-card),
 .post-card :deep(.ant-card-head),
@@ -339,6 +396,8 @@ onMounted(async () => {
 /* ── Scroll animation ── */
 .card-animate {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   opacity: 0;
   transform: translateY(2rem);
   transition:
