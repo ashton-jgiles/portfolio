@@ -61,7 +61,7 @@
     </section>
 
     <!-- Featured Posts -->
-    <section class="content-section">
+    <section class="content-section posts-section">
       <h2 class="section-title">Featured Posts</h2>
       <div class="cards-row">
         <div
@@ -314,7 +314,8 @@ onMounted(async () => {
   background: white;
 }
 
-.content-section:last-of-type {
+.posts-section {
+  padding-left: 15rem;
   padding-bottom: 14rem;
 }
 
