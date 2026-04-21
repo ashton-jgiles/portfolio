@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Share Tech Mono", serif;
+}
+
+body {
+  font-family: "Share Tech Mono", serif;
+}
+
+.ant-card,
+.ant-card-head-title,
+.ant-card-body {
+  font-family: "Share Tech Mono", serif !important;
+}
